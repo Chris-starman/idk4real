@@ -1,0 +1,30 @@
+name: Build and Deploy Java Web App
+
+on:
+  push:
+    branches: [ "main" ] # Triggers the workflow whenever you push to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build WAR File with Maven
+        run: mvn clean package
+
+      # Example: Upload the built WAR as a GitHub artifact
+      - name: Upload WAR Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-app-war
+          path: target/*.war
