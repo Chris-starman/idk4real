@@ -21,14 +21,35 @@
 //         }
 //     }
 // }
+// pipeline {
+//     agent any
+//     stages {
+//         stage('Checkout') {
+//             steps {
+//                 // We bypass the Jenkins credential system by feeding the raw secret token straight to GitHub
+//                 git branch: 'master',
+//                     url: 'https://Chris-starman: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://github.com'
+//             }
+//         }
+//         stage('Build') {
+//             steps {
+//                 bat 'mvn -B -DskipTests clean package'
+//             }
+//         }
+//     }
+// }
 pipeline {
     agent any
     stages {
         stage('Checkout') {
             steps {
-                // We bypass the Jenkins credential system by feeding the raw secret token straight to GitHub
+                // Forcefully clear the Windows cache first
+                bat 'cmdkey /delete:LegacyGenericCredential:https://github.com || exit 0'
+                bat 'cmdkey /delete:git:https://github.com || exit 0'
+
+                // Using your explicit username and token inline to bypass the Jenkins credential manager completely
                 git branch: 'master',
-                    url: 'https://Chris-starman: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://github.com'
+                    url: 'https://Chris-starman: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@://github.com'
             }
         }
         stage('Build') {
