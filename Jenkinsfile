@@ -152,3 +152,10 @@ pipeline {
                 bat 'mvn test'
             }
             post {
+                always {
+                    junit allowEmptyResults: true, testResults: '**/target/*-reports/*.xml'
+                }
+            }
+        }
+    }
+}
