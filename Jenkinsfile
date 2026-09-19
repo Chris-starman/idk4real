@@ -69,10 +69,22 @@ pipeline {
                     url: 'https://Chris-starman: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@github.com/Chris-starman/idk4real.git'
             }
         }
-        stage('Build') {
-            steps {
-                bat 'mvn -B -DskipTests clean package'
-            }
-        }
+        stages {
+               stage('Build') {
+                   steps {
+                       sh 'mvn -B -DskipTests clean package'
+                   }
+               }
+               stage('Test') {
+                   steps {
+                       sh 'mvn test'
+                   }
+                   post {
+                       always {
+                           junit 'target/surefire-reports/*.xml'
+                       }
+                   }
+               }
+           }
     }
 }
