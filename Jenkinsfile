@@ -138,22 +138,43 @@
 //     }
 // }
 
+// pipeline {
+//     agent any
+//     stages {
+//         // Removed the duplicate 'Checkout' stage entirely since Jenkins does this automatically.
+//         stage('Build') {
+//             steps {
+//                 bat 'mvn -B -DskipTests clean package'
+//             }
+//         }
+//         stage('Test') {
+//             steps {
+//                 bat 'mvn test'
+//             }
+//             post {
+//                 always {
+//                     junit allowEmptyResults: true, testResults: '**/target/*-reports/*.xml'
+//                 }
+//             }
+//         }
+//     }
+// }
+
 pipeline {
     agent any
     stages {
-        // Removed the duplicate 'Checkout' stage entirely since Jenkins does this automatically.
         stage('Build') {
             steps {
-                bat 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-                bat 'mvn test'
+                sh 'mvn test'
             }
             post {
                 always {
-                    junit allowEmptyResults: true, testResults: '**/target/*-reports/*.xml'
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
