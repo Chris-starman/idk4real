@@ -59,6 +59,27 @@
 //         }
 //     }
 // }
+
+
+//Correct one for now
+// pipeline {
+//     agent any
+//     stages {
+//         stage('Checkout') {
+//             steps {
+//                 // Using the exact correct URL structure without double protocols
+//                 git branch: 'master',
+//                     url: 'https://Chris-starman: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@github.com/Chris-starman/idk4real.git'
+//             }
+//         }
+//         stage('Build') {
+//             steps {
+//                 bat 'mvn -B -DskipTests clean package'
+//             }
+//         }
+//     }
+// }
+
 pipeline {
     agent any
     stages {
@@ -71,7 +92,19 @@ pipeline {
         }
         stage('Build') {
             steps {
+                // Changed from 'sh' to 'bat' to match your Windows agent environment
                 bat 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Changed from 'sh' to 'bat' to work on Windows
+                bat 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
             }
         }
     }
