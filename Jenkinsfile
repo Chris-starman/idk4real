@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', credentialsId: 'github-token', url: 'https://github.com'
+                git branch: 'master', credentialsId: 'github-token', url: 'https://github.com/Chris-starman/idk4real.git'
             }
         }
         stage('Build') {
