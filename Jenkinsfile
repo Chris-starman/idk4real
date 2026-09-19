@@ -110,15 +110,38 @@
 //     }
 // }
 
+// pipeline {
+//     agent any
+//     stages {
+//         stage('Checkout') {
+//             steps {
+//                 git branch: 'master',
+//                     url: 'https://Chris-starman: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@://github.com'
+//             }
+//         }
+//         stage('Build') {
+//             steps {
+//                 bat 'mvn -B -DskipTests clean package'
+//             }
+//         }
+//         stage('Test') {
+//             steps {
+//                 bat 'mvn test'
+//             }
+//             post {
+//                 always {
+//                     // Uses wildcards to search all directories for both surefire and failsafe reports
+//                     junit allowEmptyResults: true, testResults: '**/target/*-reports/*.xml'
+//                 }
+//             }
+//         }
+//     }
+// }
+
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'master',
-                    url: 'https://Chris-starman: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@://github.com'
-            }
-        }
+        // Removed the duplicate 'Checkout' stage entirely since Jenkins does this automatically.
         stage('Build') {
             steps {
                 bat 'mvn -B -DskipTests clean package'
@@ -129,11 +152,3 @@ pipeline {
                 bat 'mvn test'
             }
             post {
-                always {
-                    // Uses wildcards to search all directories for both surefire and failsafe reports
-                    junit allowEmptyResults: true, testResults: '**/target/*-reports/*.xml'
-                }
-            }
-        }
-    }
-}
