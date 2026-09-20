@@ -6,8 +6,8 @@
 </head>
 <body>
 <h2>Enter Your Name</h2>
-<!-- The form sends data to process.jsp using POST -->
-<form action="process.jsp" method="POST">
+<!-- The form sends data to result.jsp using POST -->
+<form action="result.jsp" method="POST">
     <label for="username">Name:</label>
     <input type="text" id="username" name="username">
     <input type="submit" value="Submit">
