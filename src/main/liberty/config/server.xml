@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Automated Integration Testing Server">
+
+    <!-- 1. Turn on the engines required to run Servlets and compile JSPs -->
+    <featureManager>
+        <feature>pages-3.0</feature>
+        <feature>servlet-6.1</feature>
+    </featureManager>
+
+    <!-- 2. Bind the server to port 9080 -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  httpPort="9080"
+                  httpsPort="9443" />
+
+    <!-- 3. Tell the server where to look for your compiled application -->
+    <webApplication location="demo.war" contextRoot="/demo" />
+
+</server>
