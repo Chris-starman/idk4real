@@ -180,25 +180,55 @@
 //         }
 //     }
 // }
+//pipeline {
+//    agent any
+//    stages {
+//        stage('Build') {
+//            steps {
+//                // Changed from 'sh' to 'bat' for Windows compatibility
+//                bat 'mvn -B -DskipTests clean package'
+//            }
+//        }
+//        stage('Test') {
+//            steps {
+//                // Changed from 'sh' to 'bat' for Windows compatibility
+//                bat 'mvn test'
+//            }
+//            post {
+//                always {
+//                    junit allowEmptyResults: true, testResults: '**/target/*-reports/*.xml'
+//                }
+//            }
+//        }
+//    }
+//}
 pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                // Changed from 'sh' to 'bat' for Windows compatibility
-                bat 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                // Changed from 'sh' to 'bat' for Windows compatibility
-                bat 'mvn test'
-            }
-            post {
-                always {
-                    junit allowEmptyResults: true, testResults: '**/target/*-reports/*.xml'
-                }
-            }
-        }
-    }
+	agent any
+	stages {
+		stage('Checkout') {
+			steps {
+				// Securely pulls your repository using your token credentials
+				git credentialsId: 'github-token-auth',
+				url: 'https://github.com/Chris-starman/idk4real.git',
+				branch: 'master'
+			}
+		}
+		stage('Build') {
+			steps {
+				// Changed from 'sh' to 'bat' for Windows compatibility
+				bat 'mvn -B -DskipTests clean package'
+			}
+		}
+		stage('Test') {
+			steps {
+				// Changed from 'sh' to 'bat' for Windows compatibility
+				bat 'mvn test'
+			}
+			post {
+				always {
+					junit allowEmptyResults: true, testResults: '**/target/*-reports/*.xml'
+				}
+			}
+		}
+	}
 }
