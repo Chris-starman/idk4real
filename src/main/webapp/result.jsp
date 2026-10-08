@@ -13,10 +13,7 @@
     // Retrieve the value from the form input named "username"
     String name = request.getParameter("username");
 %>
-<%
-    // New line: Retrieve the clean value passed from the Servlet. THIS LINE IS THE ONE AI LINE IN THIS FILE
-    name = (String) request.getAttribute("usernameAttr");
-%>
+
 <!-- Print the value using JSP expression tag -->
 <p>At <span id="client-time"></span>, <strong><%= name %></strong> logged in.</p>
 

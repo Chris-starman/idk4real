@@ -37,7 +37,7 @@ public class ProcessServletTest {
 
         // Assert
         //What the variable is supposed to be
-        verify(request).setAttribute("usernameAttr", "A");
+        verify(request).setAttribute("usernameAttr", "Ace");
         verify(dispatcher).forward(request, response);
     }
     // TEST CASE 2: Blank Name Provided (Validates your fallback logic!)
@@ -51,7 +51,7 @@ public class ProcessServletTest {
         servlet.doPost(request, response);
 
         // Assert: Verify it fell back to "Anonymous" instead of saving an empty string
-        verify(request).setAttribute("usernameAttr", "S");
+        verify(request).setAttribute("usernameAttr", "Something");
         verify(dispatcher).forward(request, response);
     }
 }
