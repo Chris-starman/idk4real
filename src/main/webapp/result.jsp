@@ -16,7 +16,7 @@
 %>
 
 <!-- Print the value using JSP expression tag -->
-<p>At <span id="client-time"></span>, <strong><%= name %></strong> logged in</p>
+<p>At <span id="client-time"></span>, <strong><%= name %></strong> logged in.</p>
 
 <!-- Button to go back to index.jsp -->
 <%--<button onclick="window.location.href='index.jsp'">Back to the previous page</button>--%>
