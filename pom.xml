@@ -94,6 +94,16 @@
         <version>3.13.0</version>
       </plugin>
 
+      <!-- Surefire: Runs unit tests (*Test.java) and fails build on test failures -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.2</version>
+        <configuration>
+          <testFailureIgnore>false</testFailureIgnore>
+        </configuration>
+      </plugin>
+
       <!-- Failsafe Integration Verification Hook Engine -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

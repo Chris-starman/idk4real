@@ -25,7 +25,7 @@ public class ProcessServletTest {
         dispatcher = mock(RequestDispatcher.class);
     }
 
-    //Scans would-be usernames can checks if they're a certain variable
+    // TEST CASE 1: Valid username provided
     @Test
     public void testDoPost_WithValidUsername() throws Exception {
         // Arrange
@@ -35,23 +35,23 @@ public class ProcessServletTest {
         // Act
         servlet.doPost(request, response);
 
-        // Assert
-        //What the variable is supposed to be
+        // Assert: Verify the servlet sets the username as the attribute
         verify(request).setAttribute("usernameAttr", "Ace");
         verify(dispatcher).forward(request, response);
     }
-    // TEST CASE 2: Blank Name Provided (Validates your fallback logic!)
+
+    // TEST CASE 2: Blank Name Provided (Validates fallback logic)
     @Test
     public void testDoPost_WithBlankUsername() throws Exception {
         // Arrange: Simulate a user clicking submit without typing anything
-        when(request.getParameter("username")).thenReturn("Something");
+        when(request.getParameter("username")).thenReturn(" ");
         when(request.getRequestDispatcher("/result.jsp")).thenReturn(dispatcher);
 
         // Act
         servlet.doPost(request, response);
 
-        // Assert: Verify it fell back to "Anonymous" instead of saving an empty string
-        verify(request).setAttribute("usernameAttr", "Something");
+        // Assert: Verify it fell back to "Anonymous"
+        verify(request).setAttribute("usernameAttr", "Anonymous");
         verify(dispatcher).forward(request, response);
     }
 }
