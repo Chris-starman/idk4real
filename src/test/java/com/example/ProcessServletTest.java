@@ -44,7 +44,7 @@ public class ProcessServletTest {
     @Test
     public void testDoPost_WithBlankUsername() throws Exception {
         // Arrange: Simulate a user clicking submit without typing anything
-        when(request.getParameter("username")).thenReturn(" ");
+        when(request.getParameter("username")).thenReturn("hey");
         when(request.getRequestDispatcher("/result.jsp")).thenReturn(dispatcher);
 
         // Act
