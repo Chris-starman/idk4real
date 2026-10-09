@@ -26,12 +26,12 @@ public class ProcessServletTest {
 
     @Test
     public void testDoPost_WithValidUsername() throws Exception {
-        when(request.getParameter("username")).thenReturn("Ace");
+        when(request.getParameter("username")).thenReturn("sword");
         when(request.getRequestDispatcher("/result.jsp")).thenReturn(dispatcher);
 
         servlet.doPost(request, response);
 
-        verify(request).setAttribute("usernameAttr", "Ace");
+        verify(request).setAttribute("usernameAttr", "sword");
         verify(dispatcher).forward(request, response);
     }
 

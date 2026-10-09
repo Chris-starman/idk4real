@@ -8,6 +8,7 @@
 </head>
 <body>
 <h2>Your Input Result</h2>
+<%--<h2>Welcome, User!</h2>--%>
 
 <%
     // Retrieve the value from the form input named "username"
