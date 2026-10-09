@@ -31,7 +31,7 @@ public class ProcessServletTest {
 
         servlet.doPost(request, response);
 
-        verify(request).setAttribute("usernameAttr", "sword");
+        verify(request).setAttribute("usernameAttr", "Pyra");
         verify(dispatcher).forward(request, response);
     }
 
