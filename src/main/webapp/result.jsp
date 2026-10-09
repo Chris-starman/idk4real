@@ -7,8 +7,8 @@
     <title>Display Input</title>
 </head>
 <body>
-<%--<h2>Your Input Result</h2>--%>
-<h2>Welcome, User!</h2>
+<h2>Your Input Result</h2>
+<%--<h2>Welcome, User!</h2>--%>
 
 <%
     // Retrieve the value from the form input named "username"
@@ -19,7 +19,7 @@
 <p>At <span id="client-time"></span>, <strong><%= name %></strong> logged in.</p>
 
 <!-- Button to go back to index.jsp -->
-<button onclick="window.location.href='index.jsp'">Back to the previous page</button>
+<%--<button onclick="window.location.href='index.jsp'">Back to the previous page</button>--%>
 
 </body>
 <script>
